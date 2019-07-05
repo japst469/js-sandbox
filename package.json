@@ -1,0 +1,26 @@
+{
+  "name": "js-sandbox",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Joshua Palmer",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^1.8.8"
+  },
+  "dependencies": {
+    "artoo-js": "^0.4.0",
+    "cheerio": "^1.0.0-rc.2",
+    "forever": "^0.15.3",
+    "hash-files": "^1.1.1",
+    "jquery": "^3.3.1",
+    "mysql": "^2.16.0",
+    "nightmare": "^3.0.1",
+    "node-wget": "^0.4.3",
+    "npm": "^6.5.0",
+    "random-name": "^0.1.2"
+  },
+  "description": "A notepad and eval textarea for learning Javascript."
+}

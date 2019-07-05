@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Infineight Notepad</title>
+    <link href="./bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./bower_components/codemirror/lib/codemirror.css" rel="stylesheet">
+    <link href="./bower_components/codemirror/theme/zenburn.css" rel="stylesheet">
+    <link href="./app/css/style.css" rel="stylesheet">
+  </head>
+  <body style="background-color: #434343;">
+      <div id="wrapper" class="container-fluid">
+          <div id="editor" class="CodeMirror">
+              <div id="code"></div>
+          </div>
+          <!-- <div id="result" class="code" ><pre>:</pre></div> -->
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+      <script src="./bower_components/angular/angular.js"></script>
+      <!--<script src="./bower_components/angular-route/angular-route.min.js"></script>-->
+      <script src="./bower_components/codemirror/lib/codemirror.js"></script>
+      <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="./bower_components/codemirror/mode/javascript/javascript.js"></script>
+      <script>
+          const fs = require('fs');
+          const electron = require('electron');
+
+          var win = electron.remote.getCurrentWindow();
+
+          var edit = CodeMirror(document.getElementById("code"), {
+              lineNumbers: true,
+              theme: "zenburn",
+              value: loadCode() || "",
+              lineWrapping: true,
+              tabSize: 2,
+              autofocus: true,
+              extraKeys: {
+                  "F5": exec,
+                  "F3": function () {
+                      saveEditor();
+                  },
+                  "F4": function () {
+                      loadCode();
+                  }
+              }
+          });
+          function exec() {
+              if (edit !== "undefined") {
+                  var res = window.eval(edit.getValue());
+                  //document.getElementById('result').innerHTML = "<pre>" + res + "</pre>";
+                  console.log('Editor Evaluated.');
+              }
+          };
+          function loadCode() {
+              //return "var output ='';\n\nconsole.log(output='hello world');\n\ndocument.getElementById('result').innerHTML = '<pre>'+output+'</pre>'";
+              return fs.readFile("log/log.txt", "utf-8", (err, data) => {
+                  if (err) throw err;
+                  edit.setValue(data);
+                  console.log('Contents read to Editor.');
+              });
+          }
+          function saveEditor() {
+              let now = new Date();
+              let filename = 'log/log';
+              let content = edit.getValue();
+              let options = { flag: 'a' };
+              fs.writeFile(filename + '.html', '\n<div class="date">' + new Date().toString() +
+                  '</div>\n<code language="javascript"><pre>\n' + content + '\n</pre></code>\n',
+                  options,
+                  (err) => {
+                      if (err) throw err;
+                      console.log('Contents appended to ' + filename + '.html');
+                  });
+              fs.writeFile(filename + '.txt', content,
+                  { flag: 'w' },
+                  (err) => {
+                      if (err) throw err;
+                      console.log('Contents written to ' + filename + '.txt');
+                  });
+          }
+      </script>
+  </body>
+  
+</html>

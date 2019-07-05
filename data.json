@@ -1,0 +1,6 @@
+{
+	"property1": "A new value that is awesome.",
+	"object1": {
+		"name": "A new Object to use"
+	}
+}
