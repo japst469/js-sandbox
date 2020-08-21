@@ -19,7 +19,7 @@
     "mysql": "^2.16.0",
     "nightmare": "^3.0.1",
     "node-wget": "^0.4.3",
-    "npm": "^6.5.0",
+    "npm": "^6.14.6",
     "random-name": "^0.1.2"
   },
   "description": "A notepad and eval textarea for learning Javascript."
