@@ -8,7 +8,7 @@
   "author": "Joshua Palmer",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^7.2.4"
+    "electron": "^11.5.0"
   },
   "dependencies": {
     "artoo-js": "^0.4.0",
