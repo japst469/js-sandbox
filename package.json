@@ -11,7 +11,7 @@
     "electron": "^7.2.4"
   },
   "dependencies": {
-    "artoo-js": "^0.4.0",
+    "artoo-js": "^0.4.4",
     "cheerio": "^1.0.0-rc.2",
     "forever": "^0.15.3",
     "hash-files": "^1.1.1",
